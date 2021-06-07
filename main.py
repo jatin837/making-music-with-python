@@ -5,13 +5,14 @@ def main():
 
     OUTPUT: str = os.path.abspath("./output.bin")
     SAMPLING_RATE: float = 48000
-    CMD: str = f'ffplay -f -showmod 1 f32le -ar {SAMPLING_RATE} {OUTPUT}'
+    CMD: str = f'ffplay -f f32le -showmode 1  -ar {SAMPLING_RATE} {OUTPUT}'
     STEP: float = 0.01
     WAVE: array = sin(linspace(0.0, SAMPLING_RATE*STEP, SAMPLING_RATE))
 
     with open(OUTPUT, 'wb') as f:
         f.write(WAVE)
 
+    os.system(CMD)
     
 
 if __name__ == "__main__":
