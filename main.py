@@ -2,7 +2,12 @@ import os
 from numpy import array, sin, linspace
 import struct
 
+def generate_sound(duration: float, volume: float, sampling_rate: float, step:float):
+    wave: array = sin(volume*linspace(0.0, sampling_rate*step*duration, int(sampling_rate*duration)))
+    return wave
+
 def main():
+    ################################# Variable Declaration ##############################
     DURATION:float = 2 
     VOLUME:float = 2
     LOG:str = os.path.abspath("./debug.log")
@@ -10,7 +15,8 @@ def main():
     SAMPLING_RATE: float = 48000 # number of samples per seconds from output.bin
     CMD: str = f'ffplay -f f32le -showmode 1 -ar {SAMPLING_RATE} {OUTPUT}'
     STEP: float = 0.01
-    WAVE: array = sin(VOLUME*linspace(0.0, SAMPLING_RATE*STEP*DURATION, int(SAMPLING_RATE*DURATION)))
+    ############################# Variable Declaration ends #############################
+    WAVE:array = generate_wave(duration = DURATION, volume = VOLUME, sampling_rate = SAMPLING_RATE, step = STEP)
 
     bytestring = ''
     for wave in WAVE:
