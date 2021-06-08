@@ -4,13 +4,13 @@ from math import pi, sin
 import struct
 
 def generate_sound(duration: float, volume: float, sampling_rate:float, freq: float):
-    wave: array = array([sin(freq*i) for i in linspace(0, duration, int(duration*sampling_rate))])
+    wave: array = array([sin(freq*i) for i in arange(0, sampling_rate*duration)])
     return wave
 
 def main():
     ################################# Variable Declaration ##############################
-    DURATION:float = 8 
-    FREQ: float = 440
+    DURATION:float = 1 
+    FREQ: float = 0.05
     VOLUME:float = 4
     LOG:str = os.path.abspath("./debug.log")
     OUTPUT: str = os.path.abspath("./output.bin")
