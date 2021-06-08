@@ -1,10 +1,10 @@
 import os
-from numpy import array, sin, linspace
-from math import pi
+from numpy import array, arange
+from math import pi, sin
 import struct
 
-def generate_sound(duration: float, volume: float, sampling_rate: float, freq: float):
-    wave: array = volume*sin((freq/(2*pi))*linspace(0.0, duration, int(sampling_rate*duration)))
+def generate_sound(duration: float, volume: float, freq: float):
+    wave: array = array([sin(freq*i) for i in arange(0.0, duration, 1/freq)])
     return wave
 
 def main():
@@ -18,7 +18,7 @@ def main():
     CMD: str = f'ffplay -f f32le -showmode 1 -ar {SAMPLING_RATE} {OUTPUT}'
     STEP: float = 0.01
     ############################# Variable Declaration ends #############################
-    WAVE:array = generate_sound(duration = DURATION, volume = VOLUME, sampling_rate = SAMPLING_RATE, freq = FREQ)
+    WAVE:array = generate_sound(duration = DURATION, volume = VOLUME, freq = FREQ)
 
     bytestring = ''
     for wave in WAVE:
