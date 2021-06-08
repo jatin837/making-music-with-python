@@ -16,7 +16,7 @@ def main():
     CMD: str = f'ffplay -f f32le -showmode 1 -ar {SAMPLING_RATE} {OUTPUT}'
     STEP: float = 0.01
     ############################# Variable Declaration ends #############################
-    WAVE:array = generate_wave(duration = DURATION, volume = VOLUME, sampling_rate = SAMPLING_RATE, step = STEP)
+    WAVE:array = generate_sound(duration = DURATION, volume = VOLUME, sampling_rate = SAMPLING_RATE, step = STEP)
 
     bytestring = ''
     for wave in WAVE:
